@@ -3,8 +3,8 @@
 [gimmick:theme](flatly)
 
 [代码]()
-  * # .net
-  * [.net学习体会](blog/code/net-sample.md)
+  * # Code
+  * [net学习体会](blog/code/net-sample.md)
 
 [生活]()
   * # 美好的生活方式
