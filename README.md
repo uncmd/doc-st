@@ -7,4 +7,4 @@
 采用MDWIKI 搭建，100%纯静态资源，不依赖任何服务端技术
 
 
-站点参考https://liminany.github.io/m
+站点参考https://uncmd.github.io/doc-st
