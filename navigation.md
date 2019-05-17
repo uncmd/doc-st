@@ -1,5 +1,7 @@
 # uncmd
 
+[gimmick:theme](flatly)
+
 [代码]()
   * ### .net
   * [.net学习体会](blog/code/net-sample.md)
@@ -14,5 +16,5 @@
 
 [gimmick:themechooser](选择皮肤)
 
-[在线编辑](http://prose.io/#liminany/m)
+[在线编辑](http://prose.io/#uncmd/doc-st)
 
