@@ -16,7 +16,7 @@
  - 推送到github
  - 进入自己 github 仓库,进入 Setting -> GitHub Pages-> Source 选择主分支保存。[设置参考地址](https://pages.github.com/)
 
- [![](blog/img/face.jpg)]
+ [![](blog/img/face.jpg)]("face")
 
 **就是这么简单，在本地用Notedpad++ 或者是VS Code编辑好MD文件，推送，站点立马更新好了！！！**
 
