@@ -2,7 +2,9 @@
 
 [gimmick:theme](flatly)
 
-[net学习体会](blog/code/net-sample.md)
+[net学习体会]()
+    * [示例](blog/code/net-sample.md)
+    * [md语法演示](blog/code/mddemo.md)
 
 [记录](blog/life/life-b.md)
 
@@ -12,7 +14,3 @@
 
 [在线编辑](http://prose.io/#uncmd/doc-st)
 [查看本站源码](https://github.com/uncmd/doc-st/)
-
-<!--
-[gimmick:Disqus](limin-mblogs)
--->
