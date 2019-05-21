@@ -4,9 +4,8 @@
 
 [net学习体会]()
 
-    * ### 201905
-    * [示例](blog/code/net-sample.md)
-    * [md语法演示](blog/code/mddemo.md)
+* [示例](blog/code/net-sample.md)
+* [md语法演示](blog/code/mddemo.md)
 
 [记录](blog/life/life-b.md)
 
