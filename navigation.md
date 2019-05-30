@@ -6,11 +6,15 @@
 
 * [示例](blog/code/net-sample.md)
 * [md语法演示](blog/code/mddemo.md)
+
+[前端Web]()
+
 * [jquery语法](blog/code/jquery.md)
+* [AJAX语法](blog/code/ajax.md)
 
-[记录](blog/life/life-b.md)
+[生活](blog/life/life-b.md)
 
-[我](blog/about/about.md)
+[关于](blog/about/about.md)
 
 [gimmick:themechooser](选择皮肤)
 
