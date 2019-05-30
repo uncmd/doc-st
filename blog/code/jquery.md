@@ -4,6 +4,8 @@
 
 ## jQuery 选择器
 
+----------
+
 **选择器允许您对元素组或单个元素进行操作**
 
 ### 元素选择器
@@ -30,6 +32,8 @@
 
 ## jQuery 事件
 
+----------
+
 | Event 函数          | 绑定函数至 |
 | ------------- | ------------- |
 | $(document).ready(function) | 将函数绑定到文档的就绪事件（当文档完成加载时）|
@@ -41,6 +45,8 @@
 **var jq=jQuery.noConflict()**，帮助您使用自己的名称（比如 jq）来代替 $ 符号。
 
 ## jQuery 效果
+
+----------
 
 *speed 参数：可以取值 "slow"、"fast" 或毫秒*
 
@@ -158,10 +164,14 @@ $("#p1").css("color","red").slideUp(2000).slideDown(2000);
 
 ## jQuery HTML
 
+----------
+
 ### jQuery 获取内容和属性
 
 * text() - 设置或返回所选元素的文本内容
+
 * html() - 设置或返回所选元素的内容（包括 HTML 标记）
+
 * val()  - 设置或返回表单字段的值
 
 ```javascript
@@ -176,7 +186,7 @@ $("#btn2").click(function(){
 });
 ```
 
-获得链接中 href 属性的值
+> 获得链接中 href 属性的值
 
 ```javascript
 $("button").click(function(){
@@ -200,7 +210,7 @@ $("#btn3").click(function(){
 
 **text()、html() 以及 val() 的回调函数**
 
-上面的三个 jQuery 方法：text()、html() 以及 val()，同样拥有回调函数。回调函数由两个参数：被选元素列表中当前元素的下标，以及原始（旧的）值。然后以函数新值返回您希望使用的字符串。
+> 上面的三个 jQuery 方法：text()、html() 以及 val()，同样拥有回调函数。回调函数由两个参数：被选元素列表中当前元素的下标，以及原始（旧的）值。然后以函数新值返回您希望使用的字符串。
 
 ```javascript
 $("#btn1").click(function(){
@@ -231,7 +241,7 @@ $("button").click(function(){
 
 **attr() 的回调函数**
 
-jQuery 方法 attr()，也提供回调函数。回调函数由两个参数：被选元素列表中当前元素的下标，以及原始（旧的）值。然后以函数新值返回您希望使用的字符串。
+> jQuery 方法 attr()，也提供回调函数。回调函数由两个参数：被选元素列表中当前元素的下标，以及原始（旧的）值。然后以函数新值返回您希望使用的字符串。
 
 ```javascript
 $("button").click(function(){
@@ -244,8 +254,11 @@ $("button").click(function(){
 ### jQuery 添加元素
 
 * append() - 在被选元素的结尾插入内容
+
 * prepend() - 在被选元素的开头插入内容
+
 * after() - 在被选元素之后插入内容
+
 * before() - 在被选元素之前插入内容
 
 ```javascript
@@ -267,6 +280,7 @@ $("p").append(txt1,txt2,txt3);         // 追加新元素
 ### jQuery 删除元素
 
 * remove() - 删除被选元素（及其子元素）
+
 * empty() - 从被选元素中删除子元素
 
 ```javascript
@@ -280,8 +294,11 @@ $("p").remove(".italic");
 ### jQuery 获取并设置 CSS 类
 
 * addClass() - 向被选元素添加一个或多个类
+
 * removeClass() - 从被选元素删除一个或多个类
+
 * toggleClass() - 对被选元素进行添加/删除类的切换操作
+
 * css() - 设置或返回样式属性
 
 ```javascript
@@ -314,22 +331,33 @@ $("button").click(function(){
 ### jQuery 尺寸
 
 * width() 方法设置或返回元素的宽度（不包括内边距、边框或外边距）
+
 * height() 方法设置或返回元素的高度（不包括内边距、边框或外边距）
+
 * innerWidth() 方法返回元素的宽度（包括内边距）
+
 * innerHeight() 方法返回元素的高度（包括内边距）
+
 * outerWidth() 方法返回元素的宽度（包括内边距和边框）
+
 * outerHeight() 方法返回元素的高度（包括内边距和边框）
+
 * outerWidth(true) 方法返回元素的宽度（包括内边距、边框和外边距）
+
 * outerHeight(true) 方法返回元素的高度（包括内边距、边框和外边距）
 
 方法里面添加参数用于设置尺寸
 
 ## jQuery 遍历
 
+----------
+
 ### 向上遍历 DOM 树
 
 * parent() 方法返回被选元素的直接父元素
+
 * parents() 方法返回被选元素的所有祖先元素，它一路向上直到文档的根元素 (&lt;html&gt;)
+
 * parentsUntil() 方法返回介于两个给定元素之间的所有祖先元素
 
 ```javascript
@@ -349,6 +377,7 @@ $(document).ready(function(){
 ### 向下遍历 DOM 树
 
 * children() 方法返回被选元素的所有直接子元素
+
 * find() 方法返回被选元素的后代元素，一路向下直到最后一个后代
 
 ```javascript
@@ -371,11 +400,17 @@ $(document).ready(function(){
 ### 在 DOM 树中水平遍历
 
 * siblings() 方法返回被选元素的所有同胞元素
+
 * next() 方法返回被选元素的下一个同胞元素
+
 * nextAll() 方法返回被选元素的所有后面的同胞元素
+
 * nextUntil() 方法返回介于两个给定参数之间的所有后面的同胞元素
+
 * prev() 方法返回被选元素的上一个同胞元素
+
 * prevAll() 方法返回被选元素的所有前面的同胞元素
+
 * prevUntil() 方法返回介于两个给定参数之间的所有前面的同胞元素
 
 ```javascript
@@ -403,9 +438,13 @@ $(document).ready(function(){
 ### jQuery 过滤
 
 * first() 方法返回被选元素的首个元素
+
 * last() 方法返回被选元素的最后一个元素
+
 * eq() 方法返回被选元素中带有指定索引号的元素
+
 * filter() 方法允许您规定一个标准。不匹配这个标准的元素会被从集合中删除，匹配的元素会被返回
+
 * not() 方法返回不匹配标准的所有元素
 
 > <font color=#fe9955>提示：</font>not() 方法与 filter() 相反
@@ -440,6 +479,8 @@ $(document).ready(function(){
 
 ## jQuery AJAX
 
+----------
+
 ### jQuery load() 方法
 
 load() 方法从服务器加载数据，并把返回的数据放入被选元素中
@@ -462,7 +503,9 @@ $("#div1").load("demo_test.txt #p1");
 > 可选的 callback 参数规定当 load() 方法完成后所要允许的回调函数。回调函数可以设置不同的参数：
 
 * responseTxt - 包含调用成功时的结果内容
+
 * statusTXT - 包含调用的状态
+
 * xhr - 包含 XMLHttpRequest 对象
 
 ```javascript
@@ -484,16 +527,27 @@ $("button").click(function(){
 - $.post() 方法通过 HTTP POST 请求从服务器上请求数据
 
 - GET - 从指定的资源请求数据
+
     - GET 请求可被缓存
+
     - GET 请求保留在浏览器历史记录中
+
     - GET 请求可被收藏为书签
+
     - GET 请求不应在处理敏感数据时使用
+
     - GET 请求有长度限制
+
     - GET 请求只应当用于取回数据
+
 - POST - 向指定的资源提交要处理的数据
+
     - POST 请求不会被缓存
+
     - POST 请求不会保留在浏览器历史记录中
+
     - POST 不能被收藏为书签
+
     - POST 请求对数据长度没有要求
 
 > $.get(URL,callback);
