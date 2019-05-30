@@ -1,5 +1,7 @@
 # jQuery语法
 
+[jQuery 参考手册(w3school)](http://www.w3school.com.cn/jquery/jquery_reference.asp)
+
 ## jQuery 选择器
 
 **选择器允许您对元素组或单个元素进行操作**
@@ -435,3 +437,86 @@ $(document).ready(function(){
   $("p").not(".intro");
 });
 ```
+
+## jQuery AJAX
+
+### jQuery load() 方法
+
+load() 方法从服务器加载数据，并把返回的数据放入被选元素中
+
+> $(selector).load(URL,data,callback);
+
+必需的 URL 参数规定您希望加载的 URL。
+
+可选的 data 参数规定与请求一同发送的查询字符串键/值对集合。
+
+可选的 callback 参数是 load() 方法完成后所执行的函数名称。
+
+> $("#div1").load("demo_test.txt");
+
+```javascript
+把 "demo_test.txt" 文件中 id="p1" 的元素的内容，加载到指定的 <div> 元素中
+$("#div1").load("demo_test.txt #p1");
+```
+
+> 可选的 callback 参数规定当 load() 方法完成后所要允许的回调函数。回调函数可以设置不同的参数：
+
+* responseTxt - 包含调用成功时的结果内容
+* statusTXT - 包含调用的状态
+* xhr - 包含 XMLHttpRequest 对象
+
+```javascript
+在 load() 方法完成后显示一个提示框。如果 load() 方法已成功，则显示“外部内容加载成功！”，而如果失败，则显示错误消息
+$("button").click(function(){
+  $("#div1").load("demo_test.txt",function(responseTxt,statusTxt,xhr){
+    if(statusTxt=="success")
+      alert("外部内容加载成功！");
+    if(statusTxt=="error")
+      alert("Error: "+xhr.status+": "+xhr.statusText);
+  });
+});
+```
+
+### jQuery - AJAX get() 和 post() 方法
+
+- $.get() 方法通过 HTTP GET 请求从服务器上请求数据
+
+- $.post() 方法通过 HTTP POST 请求从服务器上请求数据
+
+- GET - 从指定的资源请求数据
+    - GET 请求可被缓存
+    - GET 请求保留在浏览器历史记录中
+    - GET 请求可被收藏为书签
+    - GET 请求不应在处理敏感数据时使用
+    - GET 请求有长度限制
+    - GET 请求只应当用于取回数据
+- POST - 向指定的资源提交要处理的数据
+    - POST 请求不会被缓存
+    - POST 请求不会保留在浏览器历史记录中
+    - POST 不能被收藏为书签
+    - POST 请求对数据长度没有要求
+
+> $.get(URL,callback);
+
+> $.post(URL,data,callback);
+
+```javascript
+使用 $.get() 方法从服务器上的一个文件中取回数据
+$("button").click(function(){
+  $.get("demo_test.asp",function(data,status){
+    alert("Data: " + data + "\nStatus: " + status);
+  });
+});
+
+使用 $.post() 连同请求一起发送数据
+$("button").click(function(){
+  $.post("demo_test_post.asp",
+  {
+    name:"Donald Duck",
+    city:"Duckburg"
+  },
+  function(data,status){
+    alert("Data: " + data + "\nStatus: " + status);
+  });
+});
+````
