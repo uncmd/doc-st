@@ -8,3 +8,7 @@
 * 爱好：宅、游戏、代码，喜欢新技术
 * 目前关注的领域：DevOps、模块化、.Net Core
 * github主页：https://github.com/uncmd
+
+------
+
+![](/blog/img/face.jpg)
