@@ -6,25 +6,25 @@
 
 ### 元素选择器
 
-$("p") 选取 &lt;p&gt; 元素。
+> $("p") 选取 &lt;p&gt; 元素。
 
-$("p.intro") 选取所有 class="intro" 的 &lt;p&gt; 元素。
+> $("p.intro") 选取所有 class="intro" 的 &lt;p&gt; 元素。
 
-$("p#demo") 选取所有 id="demo" 的 &lt;p&gt; 元素。
+> $("p#demo") 选取所有 id="demo" 的 &lt;p&gt; 元素。
 
 ### 属性选择器
 
-$("[href]") 选取所有带有 href 属性的元素。
+> $("[href]") 选取所有带有 href 属性的元素。
 
-$("[href='#']") 选取所有带有 href 值等于 "#" 的元素。
+> $("[href='#']") 选取所有带有 href 值等于 "#" 的元素。
 
-$("[href!='#']") 选取所有带有 href 值不等于 "#" 的元素。
+> $("[href!='#']") 选取所有带有 href 值不等于 "#" 的元素。
 
-$("[href$='.jpg']") 选取所有 href 值以 ".jpg" 结尾的元素。
+> $("[href$='.jpg']") 选取所有 href 值以 ".jpg" 结尾的元素。
 
 ### CSS选择器
 
-$("p").css("background-color","red");
+> $("p").css("background-color","red");
 
 ## jQuery 事件
 
@@ -153,3 +153,176 @@ $("p").hide(1000,function(){
 ```javascript
 $("#p1").css("color","red").slideUp(2000).slideDown(2000);
 ```
+
+## jQuery HTML
+
+### jQuery 获取内容和属性
+
+**jQuery 拥有可操作 HTML 元素和属性的强大方法。**
+
+*三个简单实用的用于 DOM 操作的 jQuery 方法：**
+
+* text() - 设置或返回所选元素的文本内容
+* html() - 设置或返回所选元素的内容（包括 HTML 标记）
+* val()  - 设置或返回表单字段的值
+
+```javascript
+$("#btn1").click(function(){
+  alert("Text: " + $("#test").text());
+});
+$("#btn2").click(function(){
+  alert("HTML: " + $("#test").html());
+});
+$("#btn2").click(function(){
+  alert("Value: " + $("#input").val());
+});
+```
+
+获得链接中 href 属性的值
+
+```javascript
+$("button").click(function(){
+  alert($("#w3s").attr("href"));
+});
+```
+
+### jQuery 设置内容和属性
+
+```javascript
+$("#btn1").click(function(){
+  $("#test1").text("Hello world!");
+});
+$("#btn2").click(function(){
+  $("#test2").html("<b>Hello world!</b>");
+});
+$("#btn3").click(function(){
+  $("#test3").val("Dolly Duck");
+});
+```
+
+**text()、html() 以及 val() 的回调函数**
+
+上面的三个 jQuery 方法：text()、html() 以及 val()，同样拥有回调函数。回调函数由两个参数：被选元素列表中当前元素的下标，以及原始（旧的）值。然后以函数新值返回您希望使用的字符串。
+
+```javascript
+$("#btn1").click(function(){
+  $("#test1").text(function(i,origText){
+    return "Old text: " + origText + " New text: Hello world!
+    (index: " + i + ")";
+  });
+});
+
+$("#btn2").click(function(){
+  $("#test2").html(function(i,origText){
+    return "Old html: " + origText + " New html: Hello <b>world!</b>
+    (index: " + i + ")";
+  });
+});
+```
+
+**设置属性 - attr()**
+
+```javascript
+$("button").click(function(){
+  $("#w3s").attr({
+    "href" : "http://www.w3school.com.cn/jquery",
+    "title" : "W3School jQuery Tutorial"
+  });
+});
+```
+
+**attr() 的回调函数**
+
+jQuery 方法 attr()，也提供回调函数。回调函数由两个参数：被选元素列表中当前元素的下标，以及原始（旧的）值。然后以函数新值返回您希望使用的字符串。
+
+```javascript
+$("button").click(function(){
+  $("#w3s").attr("href", function(i,origValue){
+    return origValue + "/jquery";
+  });
+});
+```
+
+### jQuery 添加元素
+
+* append() - 在被选元素的结尾插入内容
+* prepend() - 在被选元素的开头插入内容
+* after() - 在被选元素之后插入内容
+* before() - 在被选元素之前插入内容
+
+```javascript
+$("p").append("Some appended text.");
+$("p").prepend("Some prepended text.");
+$("img").after("Some text after");
+$("img").before("Some text before");
+
+function appendText()
+{
+var txt1="<p>Text.</p>";               // 以 HTML 创建新元素
+var txt2=$("<p></p>").text("Text.");   // 以 jQuery 创建新元素
+var txt3=document.createElement("p");  // 以 DOM 创建新元素
+txt3.innerHTML="Text.";
+$("p").append(txt1,txt2,txt3);         // 追加新元素
+}
+```
+
+### jQuery 删除元素
+
+* remove() - 删除被选元素（及其子元素）
+* empty() - 从被选元素中删除子元素
+
+```javascript
+$("#div1").remove();
+$("#div1").empty();
+
+删除 class="italic" 的所有 <p> 元素
+$("p").remove(".italic");
+```
+
+### jQuery 获取并设置 CSS 类
+
+* addClass() - 向被选元素添加一个或多个类
+* removeClass() - 从被选元素删除一个或多个类
+* toggleClass() - 对被选元素进行添加/删除类的切换操作
+* css() - 设置或返回样式属性
+
+```javascript
+$("button").click(function(){
+  $("h1,h2,p").addClass("blue");
+  $("div").addClass("important");
+});
+
+$("button").click(function(){
+  $("#div1").addClass("important blue");
+});
+
+$("button").click(function(){
+  $("h1,h2,p").removeClass("blue");
+});
+
+$("button").click(function(){
+  $("h1,h2,p").toggleClass("blue");
+});
+```
+
+**css 方法**
+
+> $(selector).css("propertyname"); 返回首个匹配属性的值
+
+> $(selector).css("propertyname","value"); 设置所有匹配的元素的值
+
+> $(selector).css({"propertyname":"value","propertyname":"value",...}); 设置多个 CSS 属性
+
+### jQuery 尺寸
+
+* width() 方法设置或返回元素的宽度（不包括内边距、边框或外边距）
+* height() 方法设置或返回元素的高度（不包括内边距、边框或外边距）
+* innerWidth() 方法返回元素的宽度（包括内边距）
+* innerHeight() 方法返回元素的高度（包括内边距）
+* outerWidth() 方法返回元素的宽度（包括内边距和边框）
+* outerHeight() 方法返回元素的高度（包括内边距和边框）
+* outerWidth(true) 方法返回元素的宽度（包括内边距、边框和外边距）
+* outerHeight(true) 方法返回元素的高度（包括内边距、边框和外边距）
+
+方法里面添加参数用于设置尺寸
+
