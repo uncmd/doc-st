@@ -11,4 +11,4 @@
 
 ------
 
-![](/blog/img/face.jpg)
+![](../img/face.jpg)
