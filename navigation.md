@@ -6,6 +6,7 @@
 
 * [示例](blog/code/net-sample.md)
 * [md语法演示](blog/code/mddemo.md)
+* [jquery语法](blog/code/jquery.md)
 
 [记录](blog/life/life-b.md)
 
