@@ -11,4 +11,4 @@
 
 ------
 
-![](../img/face.jpg)
+![](https://github.com/uncmd/doc-st/blob/master/blog/img/face.jpg)
