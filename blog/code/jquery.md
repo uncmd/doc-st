@@ -86,7 +86,7 @@ $("button").click(function(){
 });
 ```
 
-<font color=#fe9955>提示：</font>默认的，所有HTML元素都有一个静态位置，且无法移动。如需对位置进行操作，要记得首先把元素的 CSS position 属性设置为 relative、fixed 或 absolute！
+> <font color=#fe9955>提示：</font>默认的，所有HTML元素都有一个静态位置，且无法移动。如需对位置进行操作，要记得首先把元素的 CSS position 属性设置为 relative、fixed 或 absolute！
 
 **操作多个属性**
 
@@ -322,3 +322,116 @@ $("button").click(function(){
 
 方法里面添加参数用于设置尺寸
 
+## jQuery 遍历
+
+### 向上遍历 DOM 树
+
+* parent() 方法返回被选元素的直接父元素
+* parents() 方法返回被选元素的所有祖先元素，它一路向上直到文档的根元素 (&lt;html&gt;)
+* parentsUntil() 方法返回介于两个给定元素之间的所有祖先元素
+
+```javascript
+$(document).ready(function(){
+  $("span").parent();
+});
+
+$(document).ready(function(){
+  $("span").parents("ul");
+});
+
+$(document).ready(function(){
+  $("span").parentsUntil("div");
+});
+```
+
+### 向下遍历 DOM 树
+
+* children() 方法返回被选元素的所有直接子元素
+* find() 方法返回被选元素的后代元素，一路向下直到最后一个后代
+
+```javascript
+返回类名为 "1" 的所有 <p> 元素，并且它们是 <div> 的直接子元素
+$(document).ready(function(){
+  $("div").children("p.1");
+});
+
+返回属于 <div> 后代的所有 <span> 元素
+$(document).ready(function(){
+  $("div").find("span");
+});
+
+返回 <div> 的所有后代
+$(document).ready(function(){
+  $("div").find("*");
+});
+```
+
+### 在 DOM 树中水平遍历
+
+* siblings() 方法返回被选元素的所有同胞元素
+* next() 方法返回被选元素的下一个同胞元素
+* nextAll() 方法返回被选元素的所有后面的同胞元素
+* nextUntil() 方法返回介于两个给定参数之间的所有后面的同胞元素
+* prev() 方法返回被选元素的上一个同胞元素
+* prevAll() 方法返回被选元素的所有前面的同胞元素
+* prevUntil() 方法返回介于两个给定参数之间的所有前面的同胞元素
+
+```javascript
+返回属于 <h2> 的同胞元素的所有 <p> 元素
+$(document).ready(function(){
+  $("h2").siblings("p");
+});
+
+返回 <h2> 的下一个同胞元素
+$(document).ready(function(){
+  $("h2").next();
+});
+
+返回 <h2> 的所有跟随的同胞元素
+$(document).ready(function(){
+  $("h2").nextAll();
+});
+
+返回介于 <h2> 与 <h6> 元素之间的所有同胞元素
+$(document).ready(function(){
+  $("h2").nextUntil("h6");
+});
+```
+
+### jQuery 过滤
+
+* first() 方法返回被选元素的首个元素
+* last() 方法返回被选元素的最后一个元素
+* eq() 方法返回被选元素中带有指定索引号的元素
+* filter() 方法允许您规定一个标准。不匹配这个标准的元素会被从集合中删除，匹配的元素会被返回
+* not() 方法返回不匹配标准的所有元素
+
+> <font color=#fe9955>提示：</font>not() 方法与 filter() 相反
+
+```javascript
+选取首个 <div> 元素内部的第一个 <p> 元素
+$(document).ready(function(){
+  $("div p").first();
+});
+
+选择最后一个 <div> 元素中的最后一个 <p> 元素
+$(document).ready(function(){
+  $("div p").last();
+});
+
+索引号从 0 开始，因此首个元素的索引号是 0 而不是 1。
+选取第二个 <p> 元素（索引号 1）
+$(document).ready(function(){
+  $("p").eq(1);
+});
+
+返回带有类名 "intro" 的所有 <p> 元素
+$(document).ready(function(){
+  $("p").filter(".intro");
+});
+
+返回不带有类名 "intro" 的所有 <p> 元素
+$(document).ready(function(){
+  $("p").not(".intro");
+});
+```
