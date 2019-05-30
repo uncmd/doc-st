@@ -158,10 +158,6 @@ $("#p1").css("color","red").slideUp(2000).slideDown(2000);
 
 ### jQuery 获取内容和属性
 
-**jQuery 拥有可操作 HTML 元素和属性的强大方法。**
-
-*三个简单实用的用于 DOM 操作的 jQuery 方法：**
-
 * text() - 设置或返回所选元素的文本内容
 * html() - 设置或返回所选元素的内容（包括 HTML 标记）
 * val()  - 设置或返回表单字段的值
