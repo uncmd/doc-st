@@ -216,7 +216,7 @@ showCustomer() 函数执行以下任务：
 
 "getcustomer.asp" 中的源代码负责对数据库进行查询，然后用 HTML 表格返回结果
 
-```asp
+```javascript
 <%
 response.expires=-1
 sql="SELECT * FROM CUSTOMERS WHERE CUSTOMERID="
