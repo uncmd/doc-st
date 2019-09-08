@@ -49,8 +49,8 @@
 | 30  |     |     |     |     |     |     |
 
 
-```
-gantt
+```gantt
+
 dateformat HH:mm
 Title 一天生活计划
 Whole day: done, 00:00, 1440m
@@ -64,4 +64,5 @@ Whole day: done, 00:00, 1440m
 学习/运动:crit, study,after commute2,150m <--! 20:00-22:30 -->
 准备睡觉: pre_sleep,after study,30m <--! 22:30-23:00 -->
 睡觉 : crit,sleep1,after pre_sleep,60m <--! 23:00-00:00 -->
+
 ```
