@@ -2,7 +2,7 @@
 
 [gimmick:theme](flatly)
 
-[net学习体会]()
+[net学习]()
 
 * [示例](blog/code/net-sample.md)
 * [md语法演示](blog/code/mddemo.md)
@@ -27,7 +27,10 @@
 * [持续集成/持续部署Jenkins](blog/microservice/jenkins.md)
 * [ABP框架与微服务](blog/microservice/abp.md)
 
-[生活](blog/life/life-b.md)
+[生活]()
+
+* [运动健身](blog/life/runner.md)
+* [读书笔记](blog/life/book.md)
 
 [关于](blog/about/about.md)
 
