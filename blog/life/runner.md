@@ -47,3 +47,21 @@
 | 16  | 17  | 18  | 19  | 20  | 21  | 22  |
 | 23  | 24  | 25  | 26  | 27  | 28  | 29  |
 | 30  |     |     |     |     |     |     |
+
+
+```
+gantt
+dateformat HH:mm
+Title 一天生活计划
+Whole day: done, 00:00, 1440m
+睡觉:crit, sleep2,after 00:00, 450m <--! 00:00-7:30 -->
+起床: get_up,after sleep2, 30m <--! 7:30-8:00 -->
+早餐: commute1,after get_up, 20m <--! 8:00-8:20 -->
+工作 :active,work1,after commute1,220m <--! 8:20-12:00 -->
+吃饭/休息 : rest,after work1,125m <--! 12:05-14:00 -->
+工作 :active,work2,after rest,255m <--! 14:00-18:15 -->
+通勤(步行) : commute2,after work2,105m <--! 18:15-20:00 -->
+学习/运动:crit, study,after commute2,150m <--! 20:00-22:30 -->
+准备睡觉: pre_sleep,after study,30m <--! 22:30-23:00 -->
+睡觉 : crit,sleep1,after pre_sleep,60m <--! 23:00-00:00 -->
+```
