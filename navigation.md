@@ -2,15 +2,11 @@
 
 [gimmick:theme](flatly)
 
-[net学习]()
-
-* [示例](blog/code/net-sample.md)
-* [md语法演示](blog/code/mddemo.md)
-
 [前端Web]()
 
-* [jquery语法](blog/code/jquery.md)
-* [AJAX语法](blog/code/ajax.md)
+* [jquery语法](blog/web/jquery.md)
+* [AJAX语法](blog/web/ajax.md)
+* [Vue.js](blog/web/vue.md)
 
 [微服务]()
 
