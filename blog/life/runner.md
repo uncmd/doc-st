@@ -51,6 +51,7 @@
 
 ## 2019年9月9日 星期一
 
-![](../img/clock/201909/20190909xyq.jpg)
-
-![](../img/clock/201909/20190909wjp.jpg)
+<figure class="half">
+  <img src="../img/clock/201909/20190909xyq.jpg"  width=50% height=50% />
+  <img src="../img/clock/201909/20190909wjp.jpg" width=50% height=50%  />
+</figure>
