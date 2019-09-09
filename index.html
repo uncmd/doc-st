@@ -2770,12 +2770,12 @@ if (typeof exports === 'object') {
             $.md.stage('pregimmick').subscribe(function(done) {
                 if ($.md.config.useSideMenu !== false) {
                     createPageContentMenu();
-                    log.debug('createPageContentMenu ok')
+                    console.log('createPageContentMenu ok')
                 }
                 addFooter();
-                    log.debug('addFooter ok')
+                    console.log('addFooter ok')
                 addAdditionalFooterText();
-                    log.debug('addAdditionalFooterText ok')
+                    console.log('addAdditionalFooterText ok')
                 done();
             });
             $.md.stage('postgimmick').subscribe(function(done) {
