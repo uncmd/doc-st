@@ -23,6 +23,7 @@
 * [持续集成/持续部署Jenkins](blog/microservice/jenkins.md)
 * [ABP框架与微服务](blog/microservice/abp.md)
 * [EntityFramworkCore](blog/microservice/efcore.md)
+* [PostgreSQL](blog/microservice/postgresql.md)
 
 [生活]()
 
