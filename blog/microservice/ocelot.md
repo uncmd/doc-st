@@ -39,3 +39,99 @@
 * 配置/管理REST API
 
 [项目地址github](https://github.com/ThreeMammals/Ocelot)
+
+## 三、Ocelot使用
+
+Ocelot有许多特性，先看看基础配置
+
+```json
+{
+  "ReRoutes": [
+    {
+      "UpstreamPathTemplate": "/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "LoadBalancer": "RoundRobin",
+      "UpstreamHeaderTransform": {
+        "X-Forwarded-For": "{RemoteIpAddress}"
+      },
+      "DownstreamHostAndPorts": [
+          {
+              "Host": "localhost",
+              "Port": 21021,
+          }
+      ]
+    },
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:9000",
+  }
+}
+```
+
+进阶配置
+
+```json
+{
+  "ReRoutes": [
+    {
+      "UpstreamPathTemplate": "/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "LoadBalancer": "RoundRobin",
+      "SwaggerKey": "swg1",
+      "UpstreamHeaderTransform": {
+        "X-Forwarded-For": "{RemoteIpAddress}"
+      },
+      "ServiceName": "ServiceA", // 服务名称，要和 Consul 的服务名称一致
+      "UseServiceDiscovery": true
+    },
+
+    {
+      "UpstreamPathTemplate": "/aqr/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ],
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "LoadBalancer": "RoundRobin",
+      "SwaggerKey": "swg2",
+      "UpstreamHeaderTransform": {
+        "X-Forwarded-For": "{RemoteIpAddress}"
+      },
+      "ServiceName": "ServiceB", // 服务名称，要和 Consul 的服务名称一致
+      "UseServiceDiscovery": true
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "swg1", // 和 ReRoutes 中的 SwaggerKey 相同
+      "Config": [
+        {
+          "Name": "ServiceA API",
+          "Version": "v1",
+          "Url": "http://localhost:21021/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "swg2", // 和 ReRoutes 中的 SwaggerKey 相同
+      "Config": [
+        {
+          "Name": "ServiceB API",
+          "Version": "v1",
+          "Url": "http://localhost:21031/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "",
+    "ServiceDiscoveryProvider": {
+      "Host": "172.16.96.107",
+      "Port": 8500
+      "ConfigurationKey": "Oceolot_A" //存储在Consul上的Key
+    }
+  }
+}
+```

@@ -20,14 +20,27 @@ https://docs.microsoft.com/zh-cn/aspnet/core/host-and-deploy/iis/?view=aspnetcor
 
 IIS构建配置示例：
 
-dotnet build
-dotnet test microservices\AssemblyReport\test\AssemblyReport.Tests\AssemblyReport.Tests.csproj
-cd microservices/AssemblyReport/src/AssemblyReport.Web.Host
-dotnet publish -c Release -o D:\Jenkins\BuildData\Workspace\Publish\AssemblyReport
+编译
+> dotnet build
 
-rar a -agYYYYMMDDHHMMSS -x*\App_Data D:\QMSService\BackFile\AssemblyReport\Service D:\QMSService\AssemblyReport21031
+运行测试
+> dotnet test microservices\AssemblyReport\test\AssemblyReport.Tests\AssemblyReport.Tests.csproj
 
-xcopy D:\QMSService\app_offline.htm D:\QMSService\AssemblyReport21031
-robocopy D:\Jenkins\BuildData\Workspace\Publish\AssemblyReport D:\QMSService\AssemblyReport21031 /xf *.json *.config *.pdb /R:1 /W:1
-del D:\QMSService\AssemblyReport21031\app_offline.htm
-exit 0
+发布
+> cd microservices/AssemblyReport/src/AssemblyReport.Web.Host
+> dotnet publish -c Release -o D:\Jenkins\BuildData\Workspace\Publish\AssemblyReport
+
+压缩备份
+> rar a -agYYYYMMDDHHMMSS -x*\App_Data D:\BackFile\AssemblyReport\Service D:\AssemblyReport21031
+
+app_offline.htm转发请求，防止文件被占用，可以不停止服务发布
+> xcopy D:\app_offline.htm D:\AssemblyReport21031
+
+复制发布文件到IIS目录，排除json config pdb文件，失败重试3次，每次重试间隔1秒
+> robocopy D:\Jenkins\BuildData\Workspace\Publish\AssemblyReport D:\AssemblyReport21031 /xf *.json *.config *.pdb /R:3 /W:1
+
+删除app_offline.htm文件，恢复正常访问
+> del D:\AssemblyReport21031\app_offline.htm
+
+退出
+> exit 0
