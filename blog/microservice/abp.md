@@ -6,7 +6,7 @@
 
 从请求头中获取 X-Forwarded-For 信息，代理会把每层的请求信息存到 X-Forwarded-For 中，包括客户端信息
 
-```csharp
+
     public class HttpContextClientInfoProxyProvider : HttpContextClientInfoProvider, ITransientDependency
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -42,20 +42,21 @@
             return null;
         }
     }
-```
+
 
 在Web.Core模块的预加载事件PreInitialize中替换默认实现：
-```csharp
+
+
  Configuration.ReplaceService<IClientInfoProvider, HttpContextClientInfoProxyProvider>(DependencyLifeStyle.Transient);
-```
+
 
 > 特别注意：Ocelot网关默认不会存 X-Forwarded-For信息，需要在网关配置文件添加如下配置：
 
-```json
+
 	  "UpstreamHeaderTransform": {
         "X-Forwarded-For": "{RemoteIpAddress}"
 	  }
-```
+
 
 这样审计日记获取的客户端IP地址才是真实的。
 
@@ -64,7 +65,7 @@
 
 自己实现IAuditInfoProvider接口，可以继承默认的实现，然后重写Fill方法
 
-```csharp
+
     public class QmsAuditInfoProvider : DefaultAuditInfoProvider, ITransientDependency
     {
         private readonly IConfigurationRoot _appConfiguration;
@@ -81,15 +82,14 @@
             auditInfo.CustomData = $"服务地址：{_appConfiguration["App:ServerRootAddress"]}";
         }
     }
-```
+
 	
 这里注入了配置文件，从配置文件读取服务地址，然后保存到审计日志的CustomData字段
 
 然后在Web.Host模块的PreInitialize方法中替换IAuditInfoProvider接口的默认实现
 
-```csharp
+
     Configuration.ReplaceService(typeof(Abp.Auditing.IAuditInfoProvider), () =>
     {
         IocManager.Register<IAuditInfoProvider, AssemblyReportAuditInfoProvider>(DependencyLifeStyle.Transient);
     });
-```
