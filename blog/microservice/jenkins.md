@@ -20,7 +20,6 @@ https://docs.microsoft.com/zh-cn/aspnet/core/host-and-deploy/iis/?view=aspnetcor
 
 IIS构建配置示例：
 
-```shell
 dotnet build
 dotnet test microservices\AssemblyReport\test\AssemblyReport.Tests\AssemblyReport.Tests.csproj
 cd microservices/AssemblyReport/src/AssemblyReport.Web.Host
@@ -32,4 +31,3 @@ xcopy D:\QMSService\app_offline.htm D:\QMSService\AssemblyReport21031
 robocopy D:\Jenkins\BuildData\Workspace\Publish\AssemblyReport D:\QMSService\AssemblyReport21031 /xf *.json *.config *.pdb /R:1 /W:1
 del D:\QMSService\AssemblyReport21031\app_offline.htm
 exit 0
-```
