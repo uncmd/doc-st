@@ -25,6 +25,7 @@
 * [EntityFramworkCore](blog/microservice/efcore.md)
 * [PostgreSQL](blog/microservice/postgresql.md)
 * [AbpVNext](blog/microservice/abpvnext.md)
+* [Oracle](blog/microservice/oracle.md)
 
 [生活]()
 
