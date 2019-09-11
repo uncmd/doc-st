@@ -24,6 +24,7 @@
 * [ABP框架与微服务](blog/microservice/abp.md)
 * [EntityFramworkCore](blog/microservice/efcore.md)
 * [PostgreSQL](blog/microservice/postgresql.md)
+* [AbpVNext](blog/microservice/abpvnext.md)
 
 [生活]()
 
