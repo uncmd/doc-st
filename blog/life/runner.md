@@ -69,3 +69,10 @@
   <img src="../img/clock/201909/20190911xyq.jpg"  width=45% height=45% border=0 />
   <img src="../img/clock/201909/20190911wjp.jpg" width=45% height=45% border=0 />
 </figure>
+
+## 2019年9月12日 星期四
+
+<figure class="half">
+  <img src="../img/clock/201909/20190912xyq.jpg"  width=45% height=45% border=0 alt="中秋回家" />
+  <img src="../img/clock/201909/20190912wjp.jpg" width=45% height=45% border=0 />
+</figure>
