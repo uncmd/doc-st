@@ -43,7 +43,7 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | 26  | 27  |  28 | 29  | 30  | 31  |  1  |
 | 2   |  3  |  4  |  5  |  6  |  7  | Y.Y |
-| Y.Y | Y.Y | 11  | 12  | 13  | 14  | 15  |
+| Y.Y | Y.Y | Y.Y | N.Y | Y.Y | N.N | N.Y |
 | 16  | 17  | 18  | 19  | 20  | 21  | 22  |
 | 23  | 24  | 25  | 26  | 27  | 28  | 29  |
 | 30  |     |     |     |     |     |     |
@@ -75,4 +75,19 @@
 <figure class="half">
   <img src="../img/clock/201909/20190912xyq.jpg"  width=45% height=45% border=0 alt="中秋回家" />
   <img src="../img/clock/201909/20190912wjp.jpg" width=45% height=45% border=0 />
+</figure>
+
+## 2019年9月13日 星期五
+
+<figure class="three">
+  <img src="../img/clock/201909/20190913_1xyq.jpg"  width=45% height=45% border=0 />
+  <img src="../img/clock/201909/20190913_2xyq.jpg"  width=45% height=45% border=0 />
+  <img src="../img/clock/201909/20190913wjp.jpg" width=45% height=45% border=0 />
+</figure>
+
+## 2019年9月15日 星期日
+
+<figure class="half">
+  <img src="../img/clock/201909/20190915xyq.jpg"  width=45% height=45% border=0 />
+  <img src="../img/clock/201909/20190915wjp.jpg" width=45% height=45% border=0 />
 </figure>
