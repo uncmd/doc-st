@@ -44,7 +44,7 @@
 | 26  | 27  |  28 | 29  | 30  | 31  |  1  |
 | 2   |  3  |  4  |  5  |  6  |  7  | Y.Y |
 | Y.Y | Y.Y | Y.Y | N.Y | Y.Y | N.N | Y.Y |
-| 16  | 17  | 18  | 19  | 20  | 21  | 22  |
+| Y.Y | 17  | 18  | 19  | 20  | 21  | 22  |
 | 23  | 24  | 25  | 26  | 27  | 28  | 29  |
 | 30  |     |     |     |     |     |     |
 
@@ -90,4 +90,11 @@
 <figure class="half">
   <img src="../img/clock/201909/20190915xyq.jpg"  width=45% height=45% border=0 />
   <img src="../img/clock/201909/20190915wjp.jpg" width=45% height=45% border=0 />
+</figure>
+
+## 2019年9月16日 星期一
+
+<figure class="half">
+  <img src="../img/clock/201909/20190916xyq.jpg"  width=45% height=45% border=0 />
+  <img src="../img/clock/201909/20190916wjp.jpg" width=45% height=45% border=0 />
 </figure>
