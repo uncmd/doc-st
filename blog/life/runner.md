@@ -106,6 +106,6 @@
   <img src="../img/clock/201909/20190917wjp.jpg" width=45% height=45% border=0 />
 </figure>
 
-<video id="video" controls="" preload="none" poster="../img/clock/201909/20190917wjp.jpg">
+<video id="video" controls="" preload="none">
 <source id="mp4" src="../img/clock/201909/20190917wjp.mp4" type="video/mp4">
 </video>
