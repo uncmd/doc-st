@@ -98,3 +98,14 @@
   <img src="../img/clock/201909/20190916xyq.jpg"  width=45% height=45% border=0 />
   <img src="../img/clock/201909/20190916wjp.jpg" width=45% height=45% border=0 />
 </figure>
+
+## 2019年9月17日 星期二
+
+<figure class="half">
+  <img src="../img/clock/201909/20190917xyq.jpg"  width=45% height=45% border=0 />
+  <img src="../img/clock/201909/20190917wjp.jpg" width=45% height=45% border=0 />
+</figure>
+
+<video id="video" controls="" preload="none" poster="../img/clock/201909/20190917wjp.jpg">
+<source id="mp4" src="../img/clock/201909/20190917wjp.mp4" type="video/mp4">
+</video>
