@@ -43,3 +43,12 @@ EF Core 可用作对象关系映射程序 (O/RM)，以便于 .NET 开发人员�
 在运行时应用迁移：
 
 > myDbContext.Database.Migrate();
+
+## EntityFramworkCore使用Oracle
+
+从NuGet安装包：Oracle.EntityFramworkCore
+
+Oracle数据库的默认事务级别
+在PreInitialize事件中设置工作单元的默认事务级别为 ReadCommitted
+
+> Configuration.UnitOfWork.IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted;
