@@ -26,6 +26,7 @@
 * [PostgreSQL](blog/microservice/postgresql.md)
 * [AbpVNext](blog/microservice/abpvnext.md)
 * [Oracle](blog/microservice/oracle.md)
+* [定时任务](blog/microservice/schedule.md)
 
 [生活]()
 
