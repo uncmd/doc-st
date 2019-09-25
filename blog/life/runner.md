@@ -110,16 +110,44 @@
 <source id="mp4" src="../img/clock/201909/20190917wjp.mp4" type="video/mp4">
 </video>
 
-## 2019年9月17日 星期三
+## 2019年9月18日 星期三
 
 <figure class="half">
   <img src="../img/clock/201909/20190918xyq.jpg" width=45% height=45% border=0 />
   <img src="../img/clock/201909/20190918wjp.jpg" width=45% height=45% border=0 />
 </figure>
 
-## 2019年9月18日 星期四
+## 2019年9月19日 星期四
 
 <figure class="half">
   <img src="../img/clock/201909/20190919xyq.jpg" width=45% height=45% border=0 />
   <img src="../img/clock/201909/20190919wjp.jpg" width=45% height=45% border=0 />
+</figure>
+
+## 2019年9月22日 星期日
+
+<figure class="half">
+  <img src="../img/clock/201909/20190922xyq.jpg" width=45% height=45% border=0 />
+  <img src="../img/clock/201909/20190922wjp.jpg" width=45% height=45% border=0 />
+</figure>
+
+## 2019年9月23日 星期一
+
+<figure class="half">
+  <img src="../img/clock/201909/20190923xyq.jpg" width=45% height=45% border=0 />
+  <img src="../img/clock/201909/20190923wjp.jpg" width=45% height=45% border=0 />
+</figure>
+
+## 2019年9月24日 星期二
+
+<figure class="half">
+  <img src="../img/clock/201909/20190924xyq.jpg" width=45% height=45% border=0 />
+  <img src="../img/clock/201909/20190924wjp.jpg" width=45% height=45% border=0 />
+</figure>
+
+## 2019年9月25日 星期三
+
+<figure class="half">
+  <img src="../img/clock/201909/20190925xyq.jpg" width=45% height=45% border=0 />
+  <img src="../img/clock/201909/20190925wjp.jpg" width=45% height=45% border=0 />
 </figure>
