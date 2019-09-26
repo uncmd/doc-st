@@ -151,3 +151,10 @@
   <img src="../img/clock/201909/20190925xyq.jpg" width=45% height=45% border=0 />
   <img src="../img/clock/201909/20190925wjp.jpg" width=45% height=45% border=0 />
 </figure>
+
+## 2019年9月26日 星期四
+
+<figure class="half">
+  <img src="../img/clock/201909/20190926xyq.jpg" width=45% height=45% border=0 />
+  <img src="../img/clock/201909/20190926wjp.jpg" width=45% height=45% border=0 />
+</figure>
