@@ -158,3 +158,18 @@
   <img src="../img/clock/201909/20190926xyq.jpg" width=45% height=45% border=0 />
   <img src="../img/clock/201909/20190926wjp.jpg" width=45% height=45% border=0 />
 </figure>
+
+## 2019年9月27日 星期五
+
+<figure class="three">
+  <img src="../img/clock/201909/20190927_1xyq.jpg" width=45% height=45% border=0 />
+  <img src="../img/clock/201909/20190927_2xyq.jpg" width=45% height=45% border=0 />
+  <img src="../img/clock/201909/20190927wjp.jpg" width=45% height=45% border=0 />
+</figure>
+
+## 2019年9月28日 星期六
+
+<figure class="half">
+  <img src="../img/clock/201909/20190928xyq.jpg" width=45% height=45% border=0 />
+  <img src="../img/clock/201909/20190928wjp.jpg" width=45% height=45% border=0 />
+</figure>
