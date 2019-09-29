@@ -173,3 +173,10 @@
   <img src="../img/clock/201909/20190928xyq.jpg" width=45% height=45% border=0 />
   <img src="../img/clock/201909/20190928wjp.jpg" width=45% height=45% border=0 />
 </figure>
+
+## 2019年9月29日 星期日
+
+<figure class="half">
+  <img src="../img/clock/201909/20190929xyq.jpg" width=45% height=45% border=0 />
+  <img src="../img/clock/201909/20190929wjp.jpg" width=45% height=45% border=0 />
+</figure>
