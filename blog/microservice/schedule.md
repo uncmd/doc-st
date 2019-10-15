@@ -8,7 +8,9 @@
 
 使用 Hangfire.HttpJob 扩展库，Job和接口分离
 
+参考：
 
+[分布式Job系统Hangfire](https://www.cnblogs.com/Leo_wl/p/10995388.html#_label12)
 
 ## Quatrz .NET
 

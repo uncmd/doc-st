@@ -44,6 +44,14 @@ Consul提供了几个关键功能：
 
 Consul启动读取配置文件夹会按名称顺序读取，如先读取a.json，然后读取b.json，如果a、b中存在相同的配置项，则 b 会覆盖 a 的值。
 
+> 特别注意：
+
+> 当服务独立部署的时候可以正常注册到 Consul，但是部署到 IIS 后，服务直到第一次接受请求才会注册。当所有服务都是通过网关请求时，网关首先要从 Consul 获取服务信息，但是服务启动后未注册导致网关无法获取服务信息，请求失败。
+
+> 解决这个问题有两种思路，一是IIS启动和回收时立即请求一次服务（预加载），二是使用定时服务一直请求服务。
+
+> 第一种方式可参考微软官方方案：[IIS 8.0 Application Initialization](https://docs.microsoft.com/zh-cn/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization)，几次尝试未成功后我使用了第二种方式，使用调度一直请求服务.
+
 Consul服务配置示例：
 
 ```json
