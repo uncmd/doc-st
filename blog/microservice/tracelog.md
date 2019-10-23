@@ -40,6 +40,27 @@
 }
 ```
 
+ **把Elasticsearch安装为Windows服务**
+
+进入bin目录下执行:
+
+```bash
+安装Elasticsearch服务
+elasticsearch-service.bat install
+
+删除已安装的Elasticsearch服务（如果启动则停止服务）
+elasticsearch-service.bat remove
+
+启动Elasticsearch服务（如果已安装）
+elasticsearch-service.bat start
+
+停止服务（如果启动）
+elasticsearch-service.bat stop
+
+启动GUI来管理已安装的服务
+elasticsearch-service.bat manager
+```
+
 #### 安装Kibana
 
 > Kibana 是通向 Elastic 产品集的窗口。 它可以在 Elasticsearch 中对数据进行视觉探索和实时分析。此处简单介绍，稍后会专门写一篇博客介绍Kibana及其用法
@@ -55,3 +76,17 @@
 * 使用 cmd 进入Kibana的bin目录，然后运行kibana.bat文件
 
 * 打开浏览器，访问 http://localhost:5601 即可。如果该端口被占用了，在启动的cmd控制台有显示访问的地址，复制访问即可。
+
+ **把Kibana安装为Windows服务**
+
+ Kibana没有提供安装Windows服务的功能，我们需要借助 nssm.exe 把Kibana安装为Windows服务。
+
+ 用命令行执行 nssm.exe install，弹出安装对话框
+
+ * 把 Application Path设置为Kibana安装目录\bin\kibana.bat
+ 
+ * Startup directory设置为安装目录\bin
+
+ * 参数为空
+ 
+ * 服务名称为 Kibana-7.4.0
