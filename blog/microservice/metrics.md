@@ -10,19 +10,22 @@
 
 2、解压之后放到你想要放置的位置，然后编辑influxdb.conf配置文件
 
-```conf
 [meta]
-  # Where the metadata/raft database is stored
+
+  \# Where the metadata/raft database is stored
+
   dir = "D:/BaseService/influxdb/meta"
 
 
 [data]
-  # The directory where the TSM storage engine stores TSM files.
+
+  \# The directory where the TSM storage engine stores TSM files.
+
   dir = "D:/BaseService/influxdb/data"
 
-  # The directory where the TSM storage engine stores WAL files.
+  \# The directory where the TSM storage engine stores WAL files.
+  
   wal-dir = "D:/BaseService/influxdb/wal"
-```
 
 3、启动：
 ```bash
