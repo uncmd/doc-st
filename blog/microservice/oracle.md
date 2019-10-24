@@ -6,12 +6,14 @@ Oracle Database，又名Oracle RDBMS，或简称Oracle。是甲骨文公司的�
 
 ## Oracle使用
 
+### 锁表锁包查询
+
+```sql
 -- 查询锁包
 SELECT 'alter system kill session ' || '''' || sid || ',' || serial# || '''immediate;', a.*
   FROM dba_ddl_locks a, v$session ss
  WHERE a.name LIKE '%cux_erp_qms_interface_pkg%'
    AND a.session_id = ss.sid;
-
 
 --查看被锁的表
 select p.spid,
@@ -41,3 +43,44 @@ from v$sqlarea a, v$session s, v$locked_object l
 where l.session_id = s.sid 
    and s.prev_sql_addr = a.address 
 order by sid, s.serial#;
+```
+
+### Oracle把逗号分割的字符串转换为可放入in的条件语句的字符数列
+
+```sql
+使用例子：
+SELECT rownum sn, column_value FROM TABLE(split(p_pmb, '|'));
+
+split方法：
+
+CREATE OR REPLACE FUNCTION "SPLIT" (p_list varchar2,p_sep varchar2 := ',') return type_split pipelined
+IS
+l_idx pls_integer;
+v_list varchar2(4000) := p_list;
+
+begin
+      loop
+           l_idx := instr(v_list,p_sep);
+           if l_idx > 0 then
+               pipe row(substr(v_list,1,l_idx-1));
+               v_list := substr(v_list,l_idx+length(p_sep));
+           else
+                pipe row(v_list);
+                exit;
+           end if;
+
+      end loop;
+
+
+      return;
+end split;
+
+
+SELECT *
+FROM TAB_A T1 
+WHERE  T1.CODE  IN (
+SELECT REGEXP_SUBSTR('589,321','[^,]+', 1, LEVEL) FROM DUAL
+CONNECT BY REGEXP_SUBSTR('SMITH,ALLEN,WARD,JONES', '[^,]+', 1, LEVEL) IS NOT NULL
+)
+
+```
