@@ -138,3 +138,187 @@ abp help [命令名]
 abp help        # 显示常规帮助.
 abp help new    # 显示有关 "New" 命令的帮助.
 ````
+
+## 远程端点调用
+
+appsettings.json文件包含RemoteServices部分,用于声明远程服务端点. 每个微服务通常都有不同的端点. 使用API网关模式为应用程序提供单个端点:
+
+```json
+"RemoteServices": {
+  "Default": {
+    "BaseUrl": "http://localhost:9000/"
+  }
+}
+```
+
+查找源码，发现 ABP 是通过 DynamicHttpProxyInterceptor 拦截器实现远程端点调用，查看拦截方法如下：
+
+```CSharp
+public override void Intercept(IAbpMethodInvocation invocation)
+{
+    if (invocation.Method.ReturnType == typeof(void))
+    {
+        AsyncHelper.RunSync(() => MakeRequestAsync(invocation));
+    }
+    else
+    {
+        var responseAsString = AsyncHelper.RunSync(() => MakeRequestAsync(invocation));
+
+        //TODO: Think on that
+        if (TypeHelper.IsPrimitiveExtended(invocation.Method.ReturnType, true))
+        {
+            invocation.ReturnValue = Convert.ChangeType(responseAsString, invocation.Method.ReturnType);
+        }
+        else
+        {
+            invocation.ReturnValue = JsonSerializer.Deserialize(
+                invocation.Method.ReturnType,
+                responseAsString
+            );
+        }
+    }
+}
+```
+
+拦截方法主要是调用 MakeRequestAsync 执行远程调用，对于有返回值的方法，如果是基础类型，直接类型转换，否则执行反序列化。
+
+```CSharp
+private async Task<string> MakeRequestAsync(IAbpMethodInvocation invocation)
+{
+    var clientConfig = ClientOptions.HttpClientProxies.GetOrDefault(typeof(TService)) ?? throw new AbpException($"Could not get DynamicHttpClientProxyConfig for {typeof(TService).FullName}.");
+    var remoteServiceConfig = AbpRemoteServiceOptions.RemoteServices.GetConfigurationOrDefault(clientConfig.RemoteServiceName);
+
+    var client = HttpClientFactory.Create(clientConfig.RemoteServiceName);
+
+    var action = await ApiDescriptionFinder.FindActionAsync(remoteServiceConfig.BaseUrl, typeof(TService), invocation.Method);
+    var apiVersion = GetApiVersionInfo(action);
+    var url = remoteServiceConfig.BaseUrl.EnsureEndsWith('/') + UrlBuilder.GenerateUrlWithParameters(action, invocation.ArgumentsDictionary, apiVersion);
+
+    var requestMessage = new HttpRequestMessage(action.GetHttpMethod(), url)
+    {
+        Content = RequestPayloadBuilder.BuildContent(action, invocation.ArgumentsDictionary, JsonSerializer, apiVersion)
+    };
+
+    AddHeaders(invocation, action, requestMessage, apiVersion);
+
+    await ClientAuthenticator.Authenticate(
+        new RemoteServiceHttpClientAuthenticateContext(
+            client,
+            requestMessage,
+            remoteServiceConfig,
+            clientConfig.RemoteServiceName
+        )
+    );
+
+    var response = await client.SendAsync(requestMessage, GetCancellationToken());
+
+    if (!response.IsSuccessStatusCode)
+    {
+        await ThrowExceptionForResponseAsync(response);
+    }
+
+    return await response.Content.ReadAsStringAsync();
+}
+```
+
+首先获取客户端代理配置，一般是默认值Default。然后根据客户端代理配置远程服务名称获取远程服务配置，即RemoteServices配置。使用 HttpClientFactory 创建 HttpClient。
+
+action 是远程方法的描述信息，每个ABP服务都有一个api/abp/api-definition接口，以获取服务接口描述信息，这个接口定义在Volo.Abp.AspNetCore.Mvc模块，一般会在*.HttpApi模块中引用。
+
+获取API版本信息，用以构建URL的版本
+拼接URL
+构建请求信息
+添加请求头
+身份验证
+执行远程请求
+
+拦截器在 ServiceCollectionDynamicHttpClientProxyExtensions 扩展方法中注册，注册方法如下：
+
+```CSharp
+public static IServiceCollection AddHttpClientProxies(
+    [NotNull] this IServiceCollection services,
+    [NotNull] Assembly assembly,
+    [NotNull] string remoteServiceConfigurationName = RemoteServiceConfigurationDictionary.DefaultName,
+    bool asDefaultServices = true)
+{
+    Check.NotNull(services, nameof(assembly));
+
+    //TODO: Make a configuration option and add remoteServiceName inside it!
+    //TODO: Add option to change type filter
+
+    var serviceTypes = assembly.GetTypes().Where(t =>
+        t.IsInterface && t.IsPublic && typeof(IRemoteService).IsAssignableFrom(t)
+    );
+
+    foreach (var serviceType in serviceTypes)
+    {
+        services.AddHttpClientProxy(
+            serviceType, 
+            remoteServiceConfigurationName,
+            asDefaultServices
+            );
+    }
+
+    return services;
+}
+
+public static IServiceCollection AddHttpClientProxy(
+    [NotNull] this IServiceCollection services,
+    [NotNull] Type type,
+    [NotNull] string remoteServiceConfigurationName = RemoteServiceConfigurationDictionary.DefaultName,
+    bool asDefaultService = true)
+{
+    Check.NotNull(services, nameof(services));
+    Check.NotNull(type, nameof(type));
+    Check.NotNullOrWhiteSpace(remoteServiceConfigurationName, nameof(remoteServiceConfigurationName));
+
+    services.Configure<AbpHttpClientOptions>(options =>
+    {
+        options.HttpClientProxies[type] = new DynamicHttpClientProxyConfig(type, remoteServiceConfigurationName);
+    });
+    
+    //use IHttpClientFactory and polly
+    services.AddHttpClient(remoteServiceConfigurationName)
+        .AddTransientHttpErrorPolicy(builder =>
+            // retry 3 times
+            builder.WaitAndRetryAsync(3, i => TimeSpan.FromSeconds(Math.Pow(2, i))));
+
+    var interceptorType = typeof(DynamicHttpProxyInterceptor<>).MakeGenericType(type);
+    services.AddTransient(interceptorType);
+
+    var interceptorAdapterType = typeof(CastleAbpInterceptorAdapter<>).MakeGenericType(interceptorType);
+
+    if (asDefaultService)
+    {
+        services.AddTransient(
+            type,
+            serviceProvider => ProxyGeneratorInstance
+                .CreateInterfaceProxyWithoutTarget(
+                    type,
+                    (IInterceptor)serviceProvider.GetRequiredService(interceptorAdapterType)
+                )
+        );
+    }
+
+    services.AddTransient(
+        typeof(IHttpClientProxy<>).MakeGenericType(type),
+        serviceProvider =>
+        {
+            var service = ProxyGeneratorInstance
+                .CreateInterfaceProxyWithoutTarget(
+                    type,
+                    (IInterceptor) serviceProvider.GetRequiredService(interceptorAdapterType)
+                );
+
+            return Activator.CreateInstance(
+                typeof(HttpClientProxy<>).MakeGenericType(type),
+                service
+            );
+        });
+
+    return services;
+}
+```
+
+一般注册整个程序集，实现了IRemoteService接口的服务都会被注册为远程方法。
+最佳实践是在*.HttpApi.Client项目中注册*.Application.Contracts程序集，其它微服务只需要依赖*.HttpApi.Client，执行远程端点调用和本地调用一样简单。
