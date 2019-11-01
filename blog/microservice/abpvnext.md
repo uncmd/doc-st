@@ -153,7 +153,7 @@ appsettings.json文件包含RemoteServices部分,用于声明远程服务端点.
 
 查找源码，发现 ABP 是通过 DynamicHttpProxyInterceptor 拦截器实现远程端点调用，查看拦截方法如下：
 
-```CSharp
+```csharp
 public override void Intercept(IAbpMethodInvocation invocation)
 {
     if (invocation.Method.ReturnType == typeof(void))
@@ -182,7 +182,7 @@ public override void Intercept(IAbpMethodInvocation invocation)
 
 拦截方法主要是调用 MakeRequestAsync 执行远程调用，对于有返回值的方法，如果是基础类型，直接类型转换，否则执行反序列化。
 
-```CSharp
+```csharp
 private async Task<string> MakeRequestAsync(IAbpMethodInvocation invocation)
 {
     var clientConfig = ClientOptions.HttpClientProxies.GetOrDefault(typeof(TService)) ?? throw new AbpException($"Could not get DynamicHttpClientProxyConfig for {typeof(TService).FullName}.");
@@ -234,7 +234,7 @@ action 是远程方法的描述信息，每个ABP服务都有一个api/abp/api-d
 
 拦截器在 ServiceCollectionDynamicHttpClientProxyExtensions 扩展方法中注册，注册方法如下：
 
-```CSharp
+```csharp
 public static IServiceCollection AddHttpClientProxies(
     [NotNull] this IServiceCollection services,
     [NotNull] Assembly assembly,
