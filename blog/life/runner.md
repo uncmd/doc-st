@@ -56,6 +56,9 @@
   <img src="../img/clock/201909/20190909wjp.jpg" width=45% height=45% border=0 />
 </figure>
 
+![](../img/clock/201909/20190909xyq.jpg/g/550/450 "xyq")
+![](../img/clock/201909/20190909wjp.jpg/g/550/450 "wjp")
+
 ## 2019年9月10日 星期二
 
 <figure class="half">
