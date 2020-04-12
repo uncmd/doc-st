@@ -4,7 +4,7 @@
 
 ### 5.1 乘车
 
-K34 赣州 -> 黄山 19:23-7:31
+[K34 赣州 -> 黄山 19:23-7:31](https://kyfw.12306.cn/otn/leftTicket/init?linktypeid=dc&fs=%E8%B5%A3%E5%B7%9E,GZG&ts=%E9%BB%84%E5%B1%B1,HKH&date=2020-05-01&flag=N,N,Y)
 
 ### 5.2 游玩+晚霞
 
