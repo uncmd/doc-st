@@ -6,11 +6,15 @@
 
 [K34 赣州 -> 黄山 19:23-7:31](https://kyfw.12306.cn/otn/leftTicket/init?linktypeid=dc&fs=%E8%B5%A3%E5%B7%9E,GZG&ts=%E9%BB%84%E5%B1%B1,HKH&date=2020-05-01&flag=N,N,Y)
 
+[K34 东莞东 -> 黄山 13:15-7:31](https://kyfw.12306.cn/otn/leftTicket/init?linktypeid=dc&fs=%E4%B8%9C%E8%8E%9E%E4%B8%9C,DMQ&ts=%E9%BB%84%E5%B1%B1,HKH&date=2020-05-01&flag=N,N,Y)
+
 ### 5.2 游玩+晚霞
 
 黄山站 -> 黄山北站 打车 0.5小时
 
 黄山北 -> 黄山风景区 大巴 1.5小时
+
+[黄山站 -> 黄山南门](https://map.baidu.com/dir/%E9%BB%84%E5%B1%B1%E7%AB%99/%E9%BB%84%E5%B1%B1%E9%A3%8E%E6%99%AF%E5%8C%BA-%E5%8D%97%E5%A4%A7%E9%97%A8/@13160872.057430273,3451629.2811539513,11.39z?querytype=bt&c=252&sn=2$$$$$$%E9%BB%84%E5%B1%B1%E7%AB%99$$0$$$$&en=2$$$$$$%E9%BB%84%E5%B1%B1%E9%A3%8E%E6%99%AF%E5%8C%BA-%E5%8D%97%E5%A4%A7%E9%97%A8$$1$$%E9%BB%84%E5%B1%B1%E5%B8%82%E9%BB%84%E5%B1%B1%E5%8C%BA$$&sc=252&ec=252&pn=0&rn=5&exptype=dep&exptime=2020-04-12%2020:55&version=5&da_src=shareurl)
 
 云谷寺——白鹅岭——黑虎松——始信峰——北海宾馆——清凉台——猴子观海——排云亭——西海大峡谷入口——1环.2环——返回排云亭看晚霞——入住酒店
 
