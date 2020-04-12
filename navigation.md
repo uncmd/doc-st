@@ -32,6 +32,7 @@
 
 * [运动健身](blog/life/runner.md)
 * [读书笔记](blog/life/book.md)
+* [黄山](blog/life/huangshan.md)
 
 [关于](blog/about/about.md)
 
