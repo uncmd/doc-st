@@ -6,7 +6,7 @@
 
 从请求头中获取 X-Forwarded-For 信息，代理会把每层的请求信息存到 X-Forwarded-For 中，包括客户端信息
 
-```csharp
+```
     public class HttpContextClientInfoProxyProvider : HttpContextClientInfoProvider, ITransientDependency
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -46,7 +46,7 @@
 
 在Web.Core模块的预加载事件PreInitialize中替换默认实现：
 
-```csharp
+```
  Configuration.ReplaceService<IClientInfoProvider, HttpContextClientInfoProxyProvider>(DependencyLifeStyle.Transient);
 ```
 
@@ -65,7 +65,7 @@
 
 自己实现IAuditInfoProvider接口，可以继承默认的实现，然后重写Fill方法
 
-```csharp
+```
     public class QmsAuditInfoProvider : DefaultAuditInfoProvider, ITransientDependency
     {
         private readonly IConfigurationRoot _appConfiguration;
@@ -88,7 +88,7 @@
 
 然后在Web.Host模块的PreInitialize方法中替换IAuditInfoProvider接口的默认实现
 
-```csharp
+```
 Configuration.ReplaceService(typeof(Abp.Auditing.IAuditInfoProvider), () =>
 {
     IocManager.Register<IAuditInfoProvider, AssemblyReportAuditInfoProvider>(DependencyLifeStyle.Transient);
@@ -106,7 +106,7 @@ Configuration.ReplaceService(typeof(Abp.Auditing.IAuditInfoProvider), () =>
 
 你的service或controller需要实现一个在服务端和客户端共享的接口.因此,首先需要在一个共享的类库项目中定义一个服务接口.例如:
 
-```csharp
+```
 public interface IBookAppService : IApplicationService
 {
     Task<List<BookDto>> GetListAsync();
@@ -119,7 +119,7 @@ public interface IBookAppService : IApplicationService
 
 客户端调用服务时，需要知道服务接口的元数据，Core.Http通过AbpApiDefinitionController控制器发布服务元数据，如下：
 
-```csharp
+```
 [Route("api/abp/api-definition")]
 public class AbpApiDefinitionController : AbpController, IRemoteService
 {
@@ -142,7 +142,7 @@ public class AbpApiDefinitionController : AbpController, IRemoteService
 
 在 Web.Core项目中添加 AbpHttpModule 依赖，自动注册 AbpApiDefinitionController 控制器
 
-```csharp
+```
 [DependsOn(typeof(AbpHttpModule))] //添加依赖
 public class MyWebCoreModule : AbpModule
 {
@@ -155,7 +155,7 @@ public class MyWebCoreModule : AbpModule
 
 然后给你的模块添加 AbpHttpClientModule 依赖
 
-```csharp
+```
 [DependsOn(typeof(AbpHttpClientModule))] //添加依赖
 public class MyClientAppModule : AbpModule
 {
@@ -164,7 +164,7 @@ public class MyClientAppModule : AbpModule
 
 现在，已经可以创建客户端代理了，例如：
 
-```csharp
+```
 [DependsOn(
     typeof(AbpHttpClientModule), //用来创建客户端代理
     typeof(BookStoreApplicationModule) //包含应用服务接口
@@ -186,7 +186,7 @@ AddHttpClientproxies方法获得一个程序集,找到这个程序集中所有�
 
 注意：需要在 Starup 中注册 IServiceCollection，如：
 
-```csharp
+```
 // Configure Abp and Dependency Injection
 return services.AddAbp<QMSWebHostModule>(
     // Configure Log4Net logging
@@ -219,7 +219,7 @@ appsettings.json文件中的RemoteServices节点被用来设置默认的服务�
 
 可以很直接地使用.只需要在你的客户端程序中注入服务接口:
 
-```csharp
+```
 public class MyService : ITransientDependency
 {
     private readonly IBookAppService _bookService;
@@ -249,7 +249,7 @@ public class MyService : ITransientDependency
 
 默认情况下RemoteServiceOptions从appsettings.json获取.或者,你可以使用Configure方法来设置或重写它.如:
 
-```csharp
+```
 public override void Initialize()
 {
     AbpConfigurationExtensions.ConfigureOptions<AbpRemoteServiceOptions>(option =>
@@ -279,7 +279,7 @@ public override void Initialize()
 
 AddHttpClientProxies方法有一个可选的参数来定义远程服务的名字:
 
-```csharp
+```
 context.Services.AddHttpClientProxies(
     typeof(BookStoreApplicationModule).Assembly,
     remoteServiceName: "BookStore"
