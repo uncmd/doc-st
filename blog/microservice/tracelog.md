@@ -90,3 +90,96 @@ elasticsearch-service.bat manager
  * 参数为空
  
  * 服务名称为 Kibana-7.4.0
+## log4net日志写到Oracle数据库
+
+1、在数据库中建表
+
+```
+create table LOG_INFO
+(
+  logid        NUMBER,
+  logdate      DATE,
+  logthread    VARCHAR2(255),
+  loglevel     VARCHAR2(50),
+  loglogger    VARCHAR2(255),
+  logmessage   VARCHAR2(4000),
+  logexception VARCHAR2(2000)
+)
+```
+
+2、在log4net.config添加一个写入Oracle数据库的Appender配置
+
+> Oracle.ManagedDataAccess.dll 的版本与公钥必须与项目引用的一致
+
+ 在 web.config 中添加 
+
+```
+<add key="log4net.Internal.Debug" value="true "/> 
+```
+
+可以在输出窗口查看log4net本身的日志输出，便于调试
+
+```
+    <logger name="logoracle">
+      <level value="INFO" />
+      <appender-ref ref="AdoNetAppender_Oracle" />
+    </logger>
+
+    <appender name="AdoNetAppender_Oracle" type="log4net.Appender.AdoNetAppender">
+      <connectionType value="Oracle.ManagedDataAccess.Client.OracleConnection, Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342" />
+      <!--<connectionString value="Data Source = //xxx:1521/xxx;User ID = xxx;Password = xxx" />-->
+      <connectionString value="Data Source = (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = xxx)(PORT = 1521))(CONNECT_DATA = (SERVICE_NAME = xxx)));User ID = xxx;Password = xxx" />
+      <commandText value="INSERT INTO LOG_INFO (LOGDATE,LOGTHREAD,LOGLEVEL,LOGLOGGER,LOGMESSAGE,LOGEXCEPTION) VALUES (:log_date,:thread,:log_level,:logger,:message,:exception)" />
+      <bufferSize value="1" />
+       <parameter>
+        <parameterName value=":log_date" />
+        <dbType value="DateTime" />
+        <layout type="log4net.Layout.RawTimeStampLayout" />
+      </parameter>
+      <parameter>
+          <parameterName value=":thread" />
+          <dbType value="String" />
+          <size value="255" />
+          <layout type="log4net.Layout.PatternLayout">
+              <conversionPattern value="%thread" />
+          </layout>
+      </parameter>
+      <parameter>
+          <parameterName value=":log_level" />
+          <dbType value="String" />
+          <size value="50" />
+          <layout type="log4net.Layout.PatternLayout">
+              <conversionPattern value="%level" />
+          </layout>
+      </parameter>
+      <parameter>
+          <parameterName value=":logger" />
+          <dbType value="String" />
+          <size value="255" />
+          <layout type="log4net.Layout.PatternLayout">
+              <conversionPattern value="%logger" />
+          </layout>
+      </parameter>
+      <parameter>
+          <parameterName value=":message" />
+          <dbType value="String" />
+          <size value="4000" />
+          <layout type="log4net.Layout.PatternLayout">
+              <conversionPattern value="%message" />
+          </layout>
+      </parameter>
+      <parameter>
+          <parameterName value=":exception" />
+          <dbType value="String" />
+          <size value="2000" />
+          <layout type="log4net.Layout.ExceptionLayout" />
+      </parameter>
+    </appender>
+```
+
+3、使用Oracle配置写日志
+
+```csharp
+var logger = log4net.LogManager.GetLogger("logoracle")
+logger.Info("Info");
+```
