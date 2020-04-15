@@ -44,7 +44,7 @@
 
 进入bin目录下执行:
 
-```bash
+```
 安装Elasticsearch服务
 elasticsearch-service.bat install
 
@@ -114,7 +114,13 @@ create table LOG_INFO
 
 > Oracle.ManagedDataAccess.dll 的版本与公钥必须与项目引用的一致
 
-> 在 web.config 中添加 \<add key="log4net.Internal.Debug" value="true "/> 可以在输出窗口查看log4net本身的日志输出，便于调试
+ 在 web.config 中添加 
+
+```
+<add key="log4net.Internal.Debug" value="true "/> 
+```
+
+可以在输出窗口查看log4net本身的日志输出，便于调试
 
 ```
     <logger name="logoracle">
