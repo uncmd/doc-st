@@ -179,7 +179,7 @@ create table LOG_INFO
 
 3、使用Oracle配置写日志
 
-```csharp
+```
 var logger = log4net.LogManager.GetLogger("logoracle")
 logger.Info("Info");
 ```
