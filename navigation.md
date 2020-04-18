@@ -35,6 +35,10 @@
 * [黄山](blog/life/huangshan.md)
 * [三清山](blog/life/sanqingshan.md)
 
+[读书笔记]()
+
+* [CLR](blog/books/CLR.md)
+
 [关于](blog/about/about.md)
 
 [gimmick:themechooser](选择皮肤)

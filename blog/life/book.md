@@ -4,7 +4,7 @@
 
 - [ ] 微服务设计（纽曼 Sam Newman）
  
-- [ ] CLR Via C#
+- [ ] [CLR Via C#](../books/CLR.md)
 
 - [ ] .NET微服务:容器化.NET引用架构指南
 
