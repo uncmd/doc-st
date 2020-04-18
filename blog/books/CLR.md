@@ -2,7 +2,7 @@
 
 ## 第一章 CLR的执行模型
 
-**CLR是公共语言运行时(Common Language Runtime)**
+### CLR是公共语言运行时(Common Language Runtime)
 
 可由多种编程语言使用的“运行时”，核心功能（比如内存管理、程序集加载、安全性、异常处理和线程同步）可由面向CLR的所有语言使用。
 
@@ -20,7 +20,7 @@ JIT(just-in-time)编译器将IL转换成本机(native)CPU指令
 
 方法首次调用时会调用JITCompiler函数将IL代码转换成本机CPU指令，之后再次调用同一方法则会跳过JITCompiler函数，直接执行内存块中的代码。
 
-**通用类型系统(Common Type System, CTS)**
+### 通用类型系统(Common Type System, CTS)
 
 类型向应用程序和其他类型公开了功能，通过类型，用一种编程语言写的代码能与用另一种编程语言写的代码沟通。
 
@@ -48,7 +48,7 @@ JIT(just-in-time)编译器将IL转换成本机(native)CPU指令
 
 * public：可由任何程序集中的任何代码访问
 
-**公共语言规范(Common Language Specification, CLS)**
+### 公共语言规范(Common Language Specification, CLS)
 
 它详细定义了一个最小功能集，任何编译器只有支持这个功能集，生成的类型才能兼容由其它符合CLS、面向CLR的语言生成的组件。
 
@@ -118,3 +118,39 @@ csc.exe /out:Program.exe /t:exe /r:MSCorLib.dll Program.cs
 ```
 
 指定/noconfig命令行开关，编译器将忽略本地和全局CSC.rsp文件
+
+### 元数据概述
+
+PE文件中的元数据是由几个表构成的二进制数据块，有三种表，分别是定义表(definition table)、引用表(reference table)和清单表(mainfest table)
+
+常用的元数据定义表
+
+* ModuleDef：包含文件模块文件名称和扩展名（不含路径），以及模块版本ID（编译器创建的GUID）
+
+* TypeDef：模块定义的每个类型在这个表中都有一个记录项
+
+* MethodDef：模块定义的每个方法都在这个表中有一个记录项
+
+* FieldDef：模块定义的每个字段都在这个表中有一个记录项
+
+* ParamDef：模块定义的每个参数都在这个表中有一个记录项
+
+* PropertyDef：模块定义的每个属性都在这个表中有一个记录项
+
+* EventDef：模块定义的每个事件都在这个表中有一个记录项
+
+常用的元数据引用表
+
+* AssemblyRef
+
+* ModuleRef
+
+* TypeRef
+
+* MemberRef
+
+可以用 ILDasm.exe（IL 反汇编器）查看元数据表
+
+```
+ILDasm Program.exe
+```
