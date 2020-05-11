@@ -32,7 +32,6 @@
 
 * [运动健身](blog/life/runner.md)
 * [读书笔记](blog/life/book.md)
-* [黄山](blog/life/huangshan.md)
 * [三清山](blog/life/sanqingshan.md)
 
 [读书笔记]()
